@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections;
+using PayslipCalculator.BusinessDomain;
 
 namespace PayslipCalculator
 {
@@ -24,10 +25,13 @@ namespace PayslipCalculator
         private ArrayList errorMessages = new ArrayList();
         private int irdNumer;
         private int hoursOfWork;
+        private bool isMarrid;
+        private App app;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.app = (App)(Application.Current);
             int counter = 30;
             int[] ages = new int[counter + 1];
             for (int i = 0; i <= counter; i++)
@@ -38,13 +42,45 @@ namespace PayslipCalculator
             //this.calBtn.IsEnabled = false;
         }
 
-        private void CalculateBtn_Clicked(object sender, RoutedEventArgs e)
+        private void CalculateBtn_Clicked(object sender, RoutedEventArgs evt)
         {
-            this.ValidateForm();
-            foreach (Object obj in this.errorMessages)
+            bool valid = this.ValidateForm();
+            if (valid)
             {
-                Console.WriteLine("{0}", obj);
+                try
+                {
+                    this.app.aContractor = new Contractor(
+                                                            this.fName.Text,
+                                                            this.lName.Text,
+                                                            this.isMarrid,
+                                                            this.irdNumer,
+                                                            (int)this.noChildren.SelectedValue
+                                                        );
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+
+                try
+                {
+                    this.app.aPayment = new Payment(this.app.aContractor, this.hoursOfWork);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+
             }
+            else
+            {
+                foreach (Object obj in this.errorMessages)
+                {
+                    Console.WriteLine("{0}", obj);
+                }
+            }
+
+            
         }
 
 
@@ -114,6 +150,17 @@ namespace PayslipCalculator
             {
                 valid = false;
                 this.errorMessages.Add("Please select the contractor's marital status.");
+            }
+            else
+            {
+                if ("Married" == checkedButton.Content.ToString())
+                {
+                    this.isMarrid = true;
+                }
+                else
+                {
+                    this.isMarrid = false;
+                }
             }
 
             // hours of work
