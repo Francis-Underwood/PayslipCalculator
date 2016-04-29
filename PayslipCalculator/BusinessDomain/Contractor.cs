@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PayslipCalculator.BusinessDomain
 {
-    class Contractor
+    public class Contractor
     {
         private string firstName;
         private string lastName;

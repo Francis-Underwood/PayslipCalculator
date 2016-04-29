@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using PayslipCalculator.BusinessDomain;
 
 namespace PayslipCalculator
 {
@@ -14,6 +15,9 @@ namespace PayslipCalculator
     public partial class App : Application
     {
         public int hoursOfWork;
+        public Contractor aContractor;
+        public Payment aPayment;
+
 
 
     }

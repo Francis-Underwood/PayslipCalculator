@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PayslipCalculator.BusinessDomain
 {
-    class Payment
+    public class Payment
     {
         private const double DEPENDENT_BENEFIT_RATE = 0.0875;
         private const double GST_RATE = 0.15;
