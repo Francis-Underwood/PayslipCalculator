@@ -23,7 +23,7 @@
 
         <!--status message-->
         <DockPanel Grid.Row="1" Background="Black">
-            <Label x:Name="message" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">Please fill out the form.</Label>
+            <Label DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" x:Name="contractorInfoLbl"></Label>
         </DockPanel>
 
         <!--panel-->
@@ -35,8 +35,6 @@
                 <RowDefinition Height="28"/>
                 <RowDefinition Height="28"/>
                 <RowDefinition Height="28"/>
-
-
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -47,34 +45,28 @@
 
             <!--GST-->
             <Label Grid.Column="0" Grid.Row="0" Content="GST:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <Label Grid.Column="1" Grid.Row="0" Content="NZD" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="gstLbl"/>
 
             <!--income tax-->
             <Label Grid.Column="0" Grid.Row="1" Content="Income Tax:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <Label Grid.Column="1" Grid.Row="1" Content="NZD" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="incomeTaxLbl"/>
 
             <!--membership fee-->
             <Label Grid.Column="0" Grid.Row="2" Content="Membership Fee:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <Label Grid.Column="1" Grid.Row="2" Content="NZD" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="membershipFeeLbl"/>
 
             <!--total deduction-->
             <Label Grid.Column="0" Grid.Row="3" Content="Total Deduction:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TotalDeductionLbl" x:FieldModifier="public"/>
+            <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="totalDeductionLbl"/>
 
             <!--net pay-->
             <Label Grid.Column="0" Grid.Row="4" Content="Net Pay:" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold"/>
-            <Label Grid.Column="1" Grid.Row="4" Content="NZD" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold"/>
-
+            <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" x:Name="netPayLbl"/>
 
             <!--return button-->
             <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
                 <Button Margin="0, 8, 0, 4" Content="Return" MaxWidth="80" x:Name="returnBtn" Click="ReturnBtn_Clicked" VerticalAlignment="Center"></Button>
             </StackPanel>
-
-
-
-
-
 
         </Grid>
 

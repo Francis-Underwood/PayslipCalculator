@@ -17,8 +17,5 @@ namespace PayslipCalculator
         public int hoursOfWork;
         public Contractor aContractor;
         public Payment aPayment;
-
-
-
     }
 }

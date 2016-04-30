@@ -46,13 +46,13 @@
             
             <!--IRD-->
             <Label Grid.Column="0" Grid.Row="0" Content="Contractor IRD:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="0" x:Name="ird" MaxLength="9" PreviewTextInput="digitOnly_PreviewTextInput" TextChanged="textBox_TextChanged"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="0" x:Name="ird" MaxLength="9" PreviewTextInput="digitOnly_PreviewTextInput"></TextBox>
             <!--first name-->
             <Label Grid.Column="0" Grid.Row="1" Content="Contractor First Name:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="1" x:Name="fName" TextChanged="textBox_TextChanged"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="1" x:Name="fName"></TextBox>
             <!--last name-->
             <Label Grid.Column="0" Grid.Row="2" Content="Contractor Last Name:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="2" x:Name="lName" TextChanged="textBox_TextChanged"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="2" x:Name="lName"></TextBox>
             <!--no f children-->
             <Label Grid.Column="0" Grid.Row="3" Content="Number of Children:" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <ComboBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="3" x:Name="noChildren" SelectedIndex="0" ItemsSource="{Binding}"/>
@@ -64,10 +64,10 @@
             </StackPanel>
             <!--worked hours-->
             <Label Grid.Column="0" Grid.Row="5" Content="Hours of Work:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="5" x:Name="workedHours" MaxLength="3" PreviewTextInput="digitOnly_PreviewTextInput" TextChanged="textBox_TextChanged"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="5" x:Name="workedHours" MaxLength="3" PreviewTextInput="digitOnly_PreviewTextInput"></TextBox>
             <!--cal button-->
             <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                <Button Margin="0, 8, 0, 4" Content="Calculate" MaxWidth="160" x:Name="calBtn" Click="CalculateBtn_Clicked" VerticalAlignment="Center"></Button>
+                <Button Margin="0, 4, 0, 4" Content="Calculate" MaxWidth="160" x:Name="calBtn" Click="CalculateBtn_Clicked" VerticalAlignment="Center"></Button>
             </StackPanel>
 
         </Grid>

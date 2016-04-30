@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Collections;
 using PayslipCalculator.BusinessDomain;
+using System.Text.RegularExpressions;
 
 namespace PayslipCalculator
 {
@@ -32,14 +24,14 @@ namespace PayslipCalculator
         {
             InitializeComponent();
             this.app = (App)(Application.Current);
+            // init range of number of children
             int counter = 30;
-            int[] ages = new int[counter + 1];
+            int[] numberOfChildre_Selections = new int[counter + 1];
             for (int i = 0; i <= counter; i++)
             {
-                ages[i] = i;
+                numberOfChildre_Selections[i] = i;
             }
-            this.DataContext = ages;
-            //this.calBtn.IsEnabled = false;
+            this.DataContext = numberOfChildre_Selections;
         }
 
         private void CalculateBtn_Clicked(object sender, RoutedEventArgs evt)
@@ -59,17 +51,10 @@ namespace PayslipCalculator
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Error: " + e.Message);
+                    this.ShowError(e.Message);
                 }
 
-                try
-                {
-                    this.app.aPayment = new Payment(this.app.aContractor, this.hoursOfWork);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error: " + e.Message);
-                }
+                this.app.hoursOfWork = this.hoursOfWork;
 
                 // kill the current Payslip window
                 foreach (Window winn in Application.Current.Windows)
@@ -79,11 +64,11 @@ namespace PayslipCalculator
                         winn.Close();
                     }
                 }
+
                 // open a new one
                 PayslipWindow payslipWin = new PayslipWindow();
-                // context
                 
-                payslipWin.TotalDeductionLbl.Content = "NZD " + this.app.aPayment.GetTotalDeductions();
+                // show the window
                 payslipWin.Show();
             }
             else
@@ -95,10 +80,7 @@ namespace PayslipCalculator
                 }
                 this.ShowError(msg);
             }
-
-
         }
-
 
         private void digitOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -107,7 +89,6 @@ namespace PayslipCalculator
                 e.Handled = true;
             }
         }
-
 
         private bool ValidateForm()
         {
@@ -123,21 +104,31 @@ namespace PayslipCalculator
             if (string.IsNullOrWhiteSpace(this.ird.Text))
             {
                 valid = false;
-                this.errorMessages.Add("Please fill in the contractor's ird number.");
+                this.errorMessages.Add("Please fill in the contractor's IRD number.");
             }
             else
             {
                 if (this.ird.Text.Length < 8 || this.ird.Text.Length > 9)
                 {
                     valid = false;
-                    this.errorMessages.Add("Please fill in 8~9 digits as the contractor's ird number.");
+                    this.errorMessages.Add("Please fill in 8~9 digits as the contractor's IRD number.");
                 }
                 else
                 {
-                    if (!int.TryParse(this.ird.Text, out this.irdNumer))
+                    Regex regex = new Regex("[^0-9]+");
+                    if (regex.IsMatch(this.ird.Text))
                     {
+                        //Console.WriteLine("Tera");
                         valid = false;
-                        this.errorMessages.Add("Please fill in 8~9 digits only as the contractor's ird number.");
+                        this.errorMessages.Add("Please fill in 8~9 digits only as the contractor's IRD number.");
+                    }
+                    else
+                    {
+                        if (!int.TryParse(this.ird.Text, out this.irdNumer))
+                        {
+                            valid = false;
+                            this.errorMessages.Add("Please fill in 8~9 digits only as the contractor's IRD number.");
+                        }
                     }
                 }
             }
@@ -148,12 +139,30 @@ namespace PayslipCalculator
                 valid = false;
                 this.errorMessages.Add("Please fill in the contractor's first name.");
             }
+            else
+            {
+                Regex regex = new Regex("[^A-Za-z,.()]+");
+                if (regex.IsMatch(this.fName.Text))
+                {
+                    valid = false;
+                    this.errorMessages.Add("Please don't fill in strange symbols in the first name.");
+                }
+            }
 
             // last name
             if (string.IsNullOrWhiteSpace(this.lName.Text))
             {
                 valid = false;
                 this.errorMessages.Add("Please fill in the contractor's last name.");
+            }
+            else
+            {
+                Regex regex = new Regex("[^A-Za-z,.()]+");
+                if (regex.IsMatch(this.lName.Text))
+                {
+                    valid = false;
+                    this.errorMessages.Add("Please don't fill in strange symbols in the last name.");
+                }
             }
 
             // no of children
@@ -187,27 +196,31 @@ namespace PayslipCalculator
             }
             else
             {
-                if (!int.TryParse(this.workedHours.Text, out this.hoursOfWork))
+                Regex regex = new Regex("[^0-9]+");
+                if (regex.IsMatch(this.workedHours.Text))
                 {
                     valid = false;
-                    this.errorMessages.Add("Please fill in integer only as the worked hours.");
+                    this.errorMessages.Add("Please fill in positive integer only as the hours of work.");
                 }
                 else
                 {
-                    if (this.hoursOfWork > 24 * 7)
+                    if (!int.TryParse(this.workedHours.Text, out this.hoursOfWork))
                     {
                         valid = false;
-                        this.errorMessages.Add("Don't be ridiculous, there can't be more than " + (24 * 7) + " hours in a week.");
+                        this.errorMessages.Add("Please fill in positive integer only as the hours of work.");
+                    }
+                    else
+                    {
+                        if (this.hoursOfWork > 24 * 7)
+                        {
+                            valid = false;
+                            this.errorMessages.Add("Don't be ridiculous, there can't be more than " + (24 * 7) + " hours in a week.");
+                        }
                     }
                 }
             }
 
             return valid;
-        }
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //Console.WriteLine("Lisa Ann");
         }
 
         private void ShowError(string errMsg)
@@ -221,8 +234,6 @@ namespace PayslipCalculator
                         (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                     );
         }
-
-       
 
 
     }
