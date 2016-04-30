@@ -22,3 +22,5 @@ c:\users\vincent\documents\visual studio 2015\Projects\PayslipCalculator\Payslip
 c:\users\vincent\documents\visual studio 2015\Projects\PayslipCalculator\PayslipCalculator\obj\Debug\PayslipCalculator.exe
 c:\users\vincent\documents\visual studio 2015\Projects\PayslipCalculator\PayslipCalculator\obj\Debug\PayslipCalculator.pdb
 C:\Users\Vincent\documents\visual studio 2015\Projects\PayslipCalculator\PayslipCalculator\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Vincent\documents\visual studio 2015\Projects\PayslipCalculator\PayslipCalculator\obj\Debug\PayslipWindow.g.cs
+C:\Users\Vincent\documents\visual studio 2015\Projects\PayslipCalculator\PayslipCalculator\obj\Debug\PayslipWindow.baml

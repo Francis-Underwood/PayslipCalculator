@@ -71,16 +71,32 @@ namespace PayslipCalculator
                     Console.WriteLine("Error: " + e.Message);
                 }
 
+                // kill the current Payslip window
+                foreach (Window winn in Application.Current.Windows)
+                {
+                    if (winn.GetType() == typeof(PayslipWindow))
+                    {
+                        winn.Close();
+                    }
+                }
+                // open a new one
+                PayslipWindow payslipWin = new PayslipWindow();
+                // context
+                
+                payslipWin.TotalDeductionLbl.Content = "NZD " + this.app.aPayment.GetTotalDeductions();
+                payslipWin.Show();
             }
             else
             {
+                string msg = "";
                 foreach (Object obj in this.errorMessages)
                 {
-                    Console.WriteLine("{0}", obj);
+                    msg = msg + obj.ToString() + "\n";
                 }
+                this.ShowError(msg);
             }
 
-            
+
         }
 
 
@@ -167,7 +183,7 @@ namespace PayslipCalculator
             if (string.IsNullOrWhiteSpace(this.workedHours.Text))
             {
                 valid = false;
-                this.errorMessages.Add("Please fill in worked hours.");
+                this.errorMessages.Add("Please fill in hours of work.");
             }
             else
             {
@@ -181,7 +197,7 @@ namespace PayslipCalculator
                     if (this.hoursOfWork > 24 * 7)
                     {
                         valid = false;
-                        this.errorMessages.Add("Don't be ridiculous, there can't be more than " + (24*7) + " hours in a week.");
+                        this.errorMessages.Add("Don't be ridiculous, there can't be more than " + (24 * 7) + " hours in a week.");
                     }
                 }
             }
@@ -193,6 +209,20 @@ namespace PayslipCalculator
         {
             //Console.WriteLine("Lisa Ann");
         }
+
+        private void ShowError(string errMsg)
+        {
+            var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                        errMsg,
+                        "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error,
+                        MessageBoxResult.No,
+                        (Style)App.Current.Resources["TotaraMessageBoxStyle"]
+                    );
+        }
+
+       
 
 
     }
