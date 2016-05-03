@@ -43,20 +43,9 @@ namespace PayslipCalculator.BusinessDomain
             {
                 this.IRD = ird;
             }
-
             this.isMarried = isMarried;
             this.noChildren = noChild;
-
-            this.noDependents = this.noChildren;
-            if (this.isMarried)
-            {
-                this.noDependents++;
-            }
-
-            if (this.noDependents>4)
-            {
-                this.noDependents = 4;
-            }
+            this.GetNumberOfDependents();
         }
 
         public void GetContractorInfo(out string fName, out string lName, out bool isMarried, out int ird, out int noChild)
@@ -77,6 +66,15 @@ namespace PayslipCalculator.BusinessDomain
 
         public int GetNumberOfDependents()
         {
+            this.noDependents = this.noChildren;
+            if (this.isMarried)
+            {
+                this.noDependents++;
+            }
+            if (this.noDependents > 4)
+            {
+                this.noDependents = 4;
+            }
             return this.noDependents;
         }
 
