@@ -1,0 +1,118 @@
+PayslipCalculator  (analysis done Today 19:07 most recent)
+
+from t in Application.Fields
+where new[] { "App", "MainWindow", "PayslipWindow", "Contractor", "Payment" }.Contains(t.ParentType.SimpleName)
+select new { t, t.Name.Length}
+
+41 items
+
+--------------------------------------------------+--------------+
+fields                                            |Length        |
+--------------------------------------------------+--------------+
+PayslipCalculator.App.hoursOfWork                 |11            |
+                                                  |              |
+PayslipCalculator.App.aContractor                 |11            |
+                                                  |              |
+PayslipCalculator.App.aPayment                    |8             |
+                                                  |              |
+PayslipCalculator.App._contentLoaded              |14            |
+                                                  |              |
+PayslipCalculator.MainWindow.errorMessages        |13            |
+                                                  |              |
+PayslipCalculator.MainWindow.irdNumer             |8             |
+                                                  |              |
+PayslipCalculator.MainWindow.hoursOfWork          |11            |
+                                                  |              |
+PayslipCalculator.MainWindow.isMarrid             |8             |
+                                                  |              |
+PayslipCalculator.MainWindow.app                  |3             |
+                                                  |              |
+PayslipCalculator.MainWindow.status               |6             |
+                                                  |              |
+PayslipCalculator.MainWindow.ird                  |3             |
+                                                  |              |
+PayslipCalculator.MainWindow.fName                |5             |
+                                                  |              |
+PayslipCalculator.MainWindow.lName                |5             |
+                                                  |              |
+PayslipCalculator.MainWindow.noChildren           |10            |
+                                                  |              |
+PayslipCalculator.MainWindow.maritalStatus        |13            |
+                                                  |              |
+PayslipCalculator.MainWindow.workedHours          |11            |
+                                                  |              |
+PayslipCalculator.MainWindow.calBtn               |6             |
+                                                  |              |
+PayslipCalculator.MainWindow._contentLoaded       |14            |
+                                                  |              |
+PayslipCalculator.PayslipWindow.app               |3             |
+                                                  |              |
+PayslipCalculator.PayslipWindow.contractorInfoLbl |17            |
+                                                  |              |
+PayslipCalculator.PayslipWindow.gstLbl            |6             |
+                                                  |              |
+PayslipCalculator.PayslipWindow.incomeTaxLbl      |12            |
+                                                  |              |
+PayslipCalculator.PayslipWindow.membershipFeeLbl  |16            |
+                                                  |              |
+PayslipCalculator.PayslipWindow.totalDeductionLbl |17            |
+                                                  |              |
+PayslipCalculator.PayslipWindow.netPayLbl         |9             |
+                                                  |              |
+PayslipCalculator.PayslipWindow.returnBtn         |9             |
+                                                  |              |
+PayslipCalculator.PayslipWindow._contentLoaded    |14            |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.firstN|9             |
+ame                                               |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.lastNa|8             |
+me                                                |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.isMarr|9             |
+ied                                               |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.IRD   |3             |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.noChil|10            |
+dren                                              |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Contractor.noDepe|12            |
+ndents                                            |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.DEPENDENT|22            |
+_BENEFIT_RATE                                     |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.GST_RATE |8             |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.HOURLY_RA|11            |
+TE                                                |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.INCOME_TA|15            |
+X_RATE                                            |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.MEMBERSHI|15            |
+P_RATE                                            |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.grossPay |8             |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.noOfHours|15            |
+Worked                                            |              |
+                                                  |              |
+PayslipCalculator.BusinessDomain.Payment.theContra|13            |
+ctor                                              |              |
+                                                  |              |
+--------------------------------------------------+--------------+
+Sum:                                              |421           |
+                                                  |              |
+Average:                                          |10.27         |
+                                                  |              |
+Minimum:                                          |3             |
+                                                  |              |
+Maximum:                                          |22            |
+                                                  |              |
+Standard deviation:                               |4.31          |
+                                                  |              |
+Variance:                                         |18.54         |
+                                                  |              |
+--------------------------------------------------+--------------+

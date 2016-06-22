@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PayslipCalculator"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Calculate Payslip Job Source Central" Height="440" Width="360" Icon="Resources/Totara_logo.png">
+        Title="Calculate Payslip Job Source Central" Height="440" MinWidth="200" Width="360" Icon="Resources/Totara_logo.png">
     <Window.Resources>
     </Window.Resources>
     <Grid>
@@ -23,7 +23,7 @@
         </WrapPanel>
 
         <DockPanel Grid.Row="1" Background="Black">
-            <Label x:Name="status" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Margin="0, -5, 0, 0">Please fill out the form.</Label>
+            <Label x:Name="statusLbl" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Margin="0, -5, 0, 0">Please fill out the form.</Label>
         </DockPanel>
 
         <!--panel-->
@@ -46,16 +46,16 @@
             
             <!--IRD-->
             <Label Grid.Column="0" Grid.Row="0" Content="Contractor IRD:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="0" x:Name="ird" MaxLength="9" PreviewTextInput="digitOnly_PreviewTextInput"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="0" x:Name="irdTxtbox" MaxLength="9" PreviewTextInput="DigitOnly_PreviewTextInput"></TextBox>
             <!--first name-->
             <Label Grid.Column="0" Grid.Row="1" Content="Contractor First Name:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="1" x:Name="fName"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="1" x:Name="fNameTxtbox"></TextBox>
             <!--last name-->
             <Label Grid.Column="0" Grid.Row="2" Content="Contractor Last Name:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="2" x:Name="lName"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="2" x:Name="lNameTxtbox"></TextBox>
             <!--no f children-->
             <Label Grid.Column="0" Grid.Row="3" Content="Number of Children:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <ComboBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="3" x:Name="noChildren" SelectedIndex="0" ItemsSource="{Binding}"/>
+            <ComboBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="3" x:Name="noChildrenCmbox" SelectedIndex="0" ItemsSource="{Binding}"/>
             <!--mirital status-->
             <Label Grid.Column="0" Grid.Row="4" Content="Marital Status:" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <StackPanel Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="4" Orientation="Horizontal" x:Name="maritalStatus">
@@ -64,10 +64,10 @@
             </StackPanel>
             <!--worked hours-->
             <Label Grid.Column="0" Grid.Row="5" Content="Hours of Work:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="5" x:Name="workedHours" MaxLength="3" PreviewTextInput="digitOnly_PreviewTextInput"></TextBox>
+            <TextBox Margin="0, 4, 8, 4" Grid.Column="1" Grid.Row="5" x:Name="workedHoursTxtbox" MaxLength="3" PreviewTextInput="DigitOnly_PreviewTextInput"></TextBox>
             <!--cal button-->
             <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center">
-                <Button Margin="0, 4, 0, 4" Content="Calculate" MaxWidth="160" x:Name="calBtn" Click="CalculateBtn_Clicked" VerticalAlignment="Center"></Button>
+                <Button Margin="0, 4, 0, 4" Content="Calculate" MaxWidth="160" x:Name="calculateBtn" Click="CalculateBtn_Clicked" VerticalAlignment="Center"></Button>
             </StackPanel>
 
         </Grid>

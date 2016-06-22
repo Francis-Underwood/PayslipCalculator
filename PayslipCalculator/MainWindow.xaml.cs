@@ -42,11 +42,11 @@ namespace PayslipCalculator
                 try
                 {
                     this.app.aContractor = new Contractor(
-                                                            this.fName.Text,
-                                                            this.lName.Text,
+                                                            this.fNameTxtbox.Text,
+                                                            this.lNameTxtbox.Text,
                                                             this.isMarrid,
                                                             this.irdNumer,
-                                                            (int)this.noChildren.SelectedValue
+                                                            (int)this.noChildrenCmbox.SelectedValue
                                                         );
                 }
                 catch (Exception e)
@@ -82,7 +82,7 @@ namespace PayslipCalculator
             }
         }
 
-        private void digitOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void DigitOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsDigit(e.Text, e.Text.Length - 1))
             {
@@ -101,14 +101,14 @@ namespace PayslipCalculator
             bool valid = true;
 
             // ird
-            if (string.IsNullOrWhiteSpace(this.ird.Text))
+            if (string.IsNullOrWhiteSpace(this.irdTxtbox.Text))
             {
                 valid = false;
                 this.errorMessages.Add("Please fill in the contractor's IRD number.");
             }
             else
             {
-                if (this.ird.Text.Length < 8 || this.ird.Text.Length > 9)
+                if (this.irdTxtbox.Text.Length < 8 || this.irdTxtbox.Text.Length > 9)
                 {
                     valid = false;
                     this.errorMessages.Add("Please fill in 8~9 digits as the contractor's IRD number.");
@@ -116,7 +116,7 @@ namespace PayslipCalculator
                 else
                 {
                     Regex regex = new Regex("[^0-9]+");
-                    if (regex.IsMatch(this.ird.Text))
+                    if (regex.IsMatch(this.irdTxtbox.Text))
                     {
                         //Console.WriteLine("Tera");
                         valid = false;
@@ -124,7 +124,7 @@ namespace PayslipCalculator
                     }
                     else
                     {
-                        if (!int.TryParse(this.ird.Text, out this.irdNumer))
+                        if (!int.TryParse(this.irdTxtbox.Text, out this.irdNumer))
                         {
                             valid = false;
                             this.errorMessages.Add("Please fill in 8~9 digits only as the contractor's IRD number.");
@@ -134,7 +134,7 @@ namespace PayslipCalculator
             }
 
             // first name
-            if (string.IsNullOrWhiteSpace(this.fName.Text))
+            if (string.IsNullOrWhiteSpace(this.fNameTxtbox.Text))
             {
                 valid = false;
                 this.errorMessages.Add("Please fill in the contractor's first name.");
@@ -142,7 +142,7 @@ namespace PayslipCalculator
             else
             {
                 Regex regex = new Regex("[^A-Za-z,.()]+");
-                if (regex.IsMatch(this.fName.Text))
+                if (regex.IsMatch(this.fNameTxtbox.Text))
                 {
                     valid = false;
                     this.errorMessages.Add("Please don't fill in strange symbols in the first name.");
@@ -150,7 +150,7 @@ namespace PayslipCalculator
             }
 
             // last name
-            if (string.IsNullOrWhiteSpace(this.lName.Text))
+            if (string.IsNullOrWhiteSpace(this.lNameTxtbox.Text))
             {
                 valid = false;
                 this.errorMessages.Add("Please fill in the contractor's last name.");
@@ -158,7 +158,7 @@ namespace PayslipCalculator
             else
             {
                 Regex regex = new Regex("[^A-Za-z,.()]+");
-                if (regex.IsMatch(this.lName.Text))
+                if (regex.IsMatch(this.lNameTxtbox.Text))
                 {
                     valid = false;
                     this.errorMessages.Add("Please don't fill in strange symbols in the last name.");
@@ -189,7 +189,7 @@ namespace PayslipCalculator
             }
 
             // hours of work
-            if (string.IsNullOrWhiteSpace(this.workedHours.Text))
+            if (string.IsNullOrWhiteSpace(this.workedHoursTxtbox.Text))
             {
                 valid = false;
                 this.errorMessages.Add("Please fill in hours of work.");
@@ -197,14 +197,14 @@ namespace PayslipCalculator
             else
             {
                 Regex regex = new Regex("[^0-9]+");
-                if (regex.IsMatch(this.workedHours.Text))
+                if (regex.IsMatch(this.workedHoursTxtbox.Text))
                 {
                     valid = false;
                     this.errorMessages.Add("Please fill in positive integer only as the hours of work.");
                 }
                 else
                 {
-                    if (!int.TryParse(this.workedHours.Text, out this.hoursOfWork))
+                    if (!int.TryParse(this.workedHoursTxtbox.Text, out this.hoursOfWork))
                     {
                         valid = false;
                         this.errorMessages.Add("Please fill in positive integer only as the hours of work.");
